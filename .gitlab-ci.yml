@@ -9,7 +9,6 @@ build-job:       # This job runs in the build stage, which runs first.
   tags:
     - hva
   script:
-    - npm cache clear
     - npm install
     - ng build
 
