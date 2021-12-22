@@ -26,54 +26,6 @@
           <td>{{melding.wagonType}}</td>
           <td>{{melding.position}}</td>
           <td>{{melding.status}}</td>
-
-          <!--          <ng-template #extraInfo>-->
-          <!--            <td colspan="99" style="padding: 0;">-->
-          <!--              <table class="extraInfoTable">-->
-          <!--                <tr class="clickableRow">-->
-          <!--                  <td colspan="99" class="extraInfoHeader">-->
-          <!--                    <i class="fa fa-chevron-down"></i>-->
-          <!--                  </td>-->
-          <!--                </tr>-->
-          <!--                <tr>-->
-          <!--                  <td>{{melding.location}}</td>-->
-          <!--                  <td>{{melding.deadline.toLocaleTimeString().substr(0, 5)}}</td>-->
-          <!--                  <td>{{melding.planeType}}</td>-->
-          <!--                  <td>{{melding.tailType}}</td>-->
-          <!--                  <td>{{melding.wagonType}}</td>-->
-          <!--                  <td>{{melding.position}}</td>-->
-          <!--                  <td>{{melding.status}}</td>-->
-          <!--                </tr>-->
-          <!--                <tr>-->
-          <!--                  <td colspan="99" class="btn-container">-->
-          <!--                    <button class="acceptBtn btnShape"-->
-          <!--                            *ngIf="melding.status !== requestStatus.Accepted"-->
-          <!--                            (click)="showPopUp(i)"-->
-          <!--                            [ngStyle]="{'width': 100 / numberOfButtons + '%'}">Accepteren-->
-          <!--                    </button>-->
-          <!--                    <button class="ophaalbtn btnShape"-->
-          <!--                            *ngIf="melding.status === requestStatus.Accepted"-->
-          <!--                            (click)="popUp(i)"-->
-          <!--                            [ngStyle]="{'width': 100 / numberOfButtons + '%'}">Bezorgen-->
-          <!--                    </button>-->
-          <!--                    <button class="deleteBbtn btnShape"-->
-          <!--                            *ngIf="melding.status === requestStatus.Accepted"-->
-          <!--                            [ngStyle]="{'width': 100 / numberOfButtons + '%'}">Annuleren-->
-          <!--                    </button>-->
-          <!--                    <app-damaged-form #damageForm-->
-          <!--                                      (click)="openDamageForm()"-->
-          <!--                                      *ngIf="melding.status === requestStatus.Accepted"-->
-          <!--                                      [ngStyle]="{'width': 100 / numberOfButtons + '%'}"></app-damaged-form>-->
-          <!--                  </td>-->
-          <!--                </tr>-->
-          <!--                <tr class="clickableRow">-->
-          <!--                  <td colspan="99" class="extraInfoHeader">-->
-          <!--                    <i class="fa fa-chevron-up"></i>-->
-          <!--                  </td>-->
-          <!--                </tr>-->
-          <!--              </table>-->
-          <!--            </td>-->
-          <!--          </ng-template>-->
         </ng-container>
       </tr>
       </tbody>
