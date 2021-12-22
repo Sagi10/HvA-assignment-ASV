@@ -7,7 +7,7 @@ build-job:       # This job runs in the build stage, which runs first.
   stage: build
   image: trion/ng-cli:10.2.0
   tags:
-    - hvarunner1
+    - hva
   script:
     - npm cache clear
     - npm install
@@ -16,13 +16,13 @@ build-job:       # This job runs in the build stage, which runs first.
 unit-test-job:   # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
   tags:
-    - hvarunner1
+    - hva
   script:
     - echo "Eerst unit tests schrijven en dan hier de command toevoegen welke test files er gerund moet worden"
 
 deploy-job:      # This job runs in the deploy stage.
   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
   tags:
-    - hvarunner1
+    - hva
   script:
     - echo "Eerst uitzoeken hoe we willen deployen en dan hier de script toevoegen"
