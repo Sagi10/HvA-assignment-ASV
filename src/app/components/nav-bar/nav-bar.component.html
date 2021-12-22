@@ -1,0 +1,80 @@
+<div class="container" *ngIf="notLoginPage">
+  <div class="row">
+    <div class="col-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <!--Loops through every seperate link in the current route and adds a button for each item-->
+          <li
+            *ngFor="let link of currentRoute; let i = index"
+            [class]="currentRoute.length === i + 1? 'active breadcrumb-item': 'breadcrumb-item'">
+            <!--Navigates to a previous link option-->
+            <a (click)="navigate(i + 1)"
+               *ngIf="i !== currentRoute.length - 1; else lastItem">{{link}}</a>
+            <ng-template #lastItem><span>{{link}}</span></ng-template>
+          </li>
+
+          <div class="auth-container">
+            <a (click)="logOut()">Logout</a>
+          </div>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</div>
+
+  <!--Nav-bar linkerkant-->
+  <!--<nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #00AAE7" *ngIf="!adminMode">-->
+  <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">-->
+  <!--<span class="navbar-toggler-icon"></span>-->
+  <!--</button>-->
+  <!--<div class="collapse navbar-collapse" id="navbarNavDropdown">-->
+  <!--<ul class="navbar-nav">-->
+
+  <!--<ng-template [ngIf]="runnerMode">-->
+  <!--<li class="nav-item dropdown active">-->
+  <!--<a class="nav-link dropdown-toggle" id="navbarDropdownMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+  <!--Meldingen-->
+  <!--</a>-->
+  <!--<div class="dropdown-menu" aria-labelledby="navbarDropdownMenu" style="background-color: #00AAE7">-->
+  <!--<a class="dropdown-item" routerLink="/meldingen-openstaand">Openstaande meldingen</a>-->
+  <!--<a class="dropdown-item" routerLink="/meldingen/afzetten">Afzetten</a>-->
+  <!--<a class="dropdown-item" routerLink="/meldingen/ophalen">Ophalen</a>-->
+  <!--</div>-->
+  <!--</li>-->
+
+  <!--<li class="nav-item dropdown active">-->
+  <!--<a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+  <!--Producten-->
+  <!--</a>-->
+  <!--<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #00AAE7">-->
+  <!--<a class="dropdown-item" routerLink="/producten/extern">Externe producten</a>-->
+  <!--<a class="dropdown-item" routerLink="/producten/bijzonder">Bijzondere producten</a>-->
+  <!--</div>-->
+  <!--</li>-->
+  <!--</ng-template>-->
+  <!--<ng-template [ngIf]="mechanicMode">-->
+  <!--<li class="nav-item active">-->
+  <!--<a class="nav-link" routerLink="/request-Form">Aanvraag formulier<span class="sr-only">(current)</span></a>-->
+  <!--</li>-->
+
+  <!--<li class="nav-item active">-->
+  <!--<a class="nav-link" routerLink="/meldingen-openstaand">aangemaakte Requests<span class="sr-only">(current)</span></a>-->
+  <!--</li>-->
+  <!--</ng-template>-->
+
+
+  <!--</ul>-->
+  <!--</div>-->
+
+  <!--&lt;!&ndash;  Nav-bar rechterkant&ndash;&gt;-->
+  <!--<div class="collapse navbar-collapse" id="navbarNavDropdow">-->
+  <!--<ul class="navbar-nav ml-auto">-->
+  <!--&lt;!&ndash;      <li class="nav-item active">&ndash;&gt;-->
+  <!--&lt;!&ndash;        <a class="nav-link" routerLink="/signin">Mijn account<span class="sr-only">(current)</span></a>&ndash;&gt;-->
+  <!--&lt;!&ndash;      </li>&ndash;&gt;-->
+  <!--<li class="nav-item active" (click)="logOut()">-->
+  <!--<a class="nav-link" routerLink="/signin">Log out<span class="sr-only">(current)</span></a>-->
+  <!--</li>-->
+  <!--</ul>-->
+  <!--</div>-->
+  <!--</nav>-->

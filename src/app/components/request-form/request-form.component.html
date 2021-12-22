@@ -1,0 +1,88 @@
+<ng-template [ngIf]="!mechanicAnimation">
+  <form (ngSubmit)="onSubmit()" #form="ngForm">
+    <input name="location" id="location" type="text" class="feedback-input" placeholder="Location"
+           [(ngModel)]="location"
+           required
+          pattern="^[A-Za-z][0-9]+"/>
+    <input name="time" id= "timepicker" type="time" class="feedback-input" placeholder="Deadline"
+           [(ngModel)]="deadline"
+           required />
+
+    <select id="planeType" name="planeType" class="dropdown-input feedback-input"
+            [(ngModel)]="planeType"
+            (change)="changeType(planeType)">
+      <option hidden>{{planeType}}</option>
+      <option
+        [hidden]="type === planeTypeEnums.VLIEGTUIGTYPE"
+        *ngFor="let type of planeTypeList">{{type}}
+      </option>
+    </select>
+
+    <select id="tailType" name="TailTypes" class="dropdown-input feedback-input"
+            [(ngModel)]="tailType">
+      <option hidden>{{tailType}}</option>
+      <option
+        *ngFor="let type of tailTypeList">{{type}}
+      </option>
+    </select>
+
+    <div
+      *ngFor="let equipment of selectedEquipment; let i = index">
+      <ng-container *ngIf="selectedEquipment.length !== 0">
+        <div class="flex-container">
+          <div class="equipmentContrainer">
+
+            <select title="equipment" name="equipment1" class="dropdown-input"
+                    (change)="addEquipment($event.target.value, equipment, i)"
+                    required>
+              <option hidden>{{selectedEquipment[i]}}</option>
+              <option
+                [hidden]="equipment === equipmentEnums.EQUIPMENT"
+                *ngFor="let equipment of equipmentList"
+                value="{{equipment}}">{{equipment}}
+              </option>
+            </select>
+
+            <div class="flex-container"
+                 *ngIf="equipment !== 'Equipment'">
+              <div class="btn btn-outline-primary flex-btn btn-left"
+                   (click)="buttonSelected($event.target, i)">Left
+              </div>
+              <div class="btn btn-outline-primary flex-btn"
+                   (click)="buttonSelected($event.target, i)">Nose
+              </div>
+              <div class="btn btn-outline-primary flex-btn btn-right"
+                   (click)="buttonSelected($event.target, i)">Right
+              </div>
+            </div>
+
+          </div>
+
+          <button class="removeButton"
+                  *ngIf="selectedEquipment.length !== 1"
+                  (click)="remove(equipment)">X
+          </button>
+        </div>
+
+        <tire-wagon
+          [planeType]="planeType"
+          *ngIf="equipment === equipmentEnums.TIRECART">
+        </tire-wagon>
+
+      </ng-container>
+    </div>
+    <div class="text-center"
+         *ngIf="selectedEquipment[0] !== equipmentEnums.EQUIPMENT && equipmentList.length !== 1">
+      <button type="button" class="feedback-input"
+              (click)="addNewEquipment();">+</button>
+    </div>
+    <input id="submitButton" type="submit" value="submit"/>
+  </form>
+</ng-template>
+<ng-template [ngIf]="mechanicAnimation">
+  <app-mechanic-animation></app-mechanic-animation>
+</ng-template>
+<div
+  *ngIf="popupOpen" class="popup">
+  <span>{{popupText}}</span>
+</div>

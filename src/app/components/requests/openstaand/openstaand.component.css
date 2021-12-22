@@ -1,0 +1,330 @@
+h1 {
+  text-align: center;
+}
+
+table{
+  border-collapse: collapse;
+}
+
+th, td{
+  padding: 8px;
+  font-size: var(--application-font-size);
+}
+
+.table thead th {
+  border-bottom: none;
+}
+
+th {
+  cursor: default;
+  text-align: center;
+  color: white;
+  background-color: #00AAE7;
+  border: none;
+}
+
+td {
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 280px;
+  text-align: center;
+}
+
+tr td {
+  border-bottom: 1px solid lightgray;
+}
+
+tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+th:last-child {
+  border-top-right-radius: 10px;
+}
+
+th:first-child {
+  border-top-left-radius: 10px;
+}
+
+.acceptBtn {
+  background-color: orange;
+  color: white;
+}
+
+.bezorgdbtn {
+  background-color: green;
+  color: white;
+}
+
+.tabeldiv {
+  width: max-content;
+  display: flex;
+  margin: auto;
+}
+
+.ophaalbtn {
+  background-color: green;
+  color: white;
+}
+
+.deleteBbtn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btnShape {
+  padding: 10px;
+  flex: 1;
+  border: none;
+}
+
+nav .breadcrumb {
+  display: block;
+  width: 100%;
+}
+
+
+li.breadcrumb-item {
+  display: initial;
+}
+
+.auth-container {
+  float: right;
+}
+
+.btn-category {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.3em;
+  font-weight: bold;
+  width: 100%;
+  min-height: 50px;
+  background: #e9ecef;
+}
+
+.btn-category:hover {
+  color: #FFF;
+  background: #00AAE7;
+}
+
+.extraInfoTable {
+  width: 100%;
+  border: none;
+}
+
+.extraInfoTable tr:first-child td{
+  border: none;
+}
+
+.extraInfoTable td {
+  border: none;
+  border-right: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+}
+
+.extraInfoHeader {
+  padding: 10px;
+  text-align: center;
+}
+
+.extraInfoTable th {
+  border-bottom: 1px solid #00668a;
+  border-top: none;
+  border-radius: 0;
+}
+
+.btn-container {
+  padding: 0;
+  border: none;
+}
+
+.warning {
+  background-color: rgba(254, 177, 0, 0.3) !important;
+}
+
+.late {
+  background-color: rgba(255, 0, 0, 0.3) !important;
+}
+
+@media (min-width: 768px) {
+  .btn-category {
+    min-height: 260px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .btn-category {
+    min-height: 180px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .btn-category {
+    min-height: 220px;
+  }
+}
+
+.box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 750px;
+  max-height: 400px;
+  min-height: 200px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 20px black;
+  border-radius: 8px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  padding: 10px;
+}
+
+.box tbody {
+  border-bottom: 1px solid lightgray;
+}
+
+.closeBtndiv{
+  text-align: right;
+  padding-right: 10px;
+  font-size: 20px;
+}
+
+.closeBtn:hover {
+  cursor: pointer;
+}
+
+.yesBtn {
+  float: right;
+  font-weight: 700;
+  width: 100px;
+  height: 30px;
+  margin: 10px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  background-color: green;
+}
+
+.noBtn {
+  float: left;
+  font-weight: 700;
+  width: 100px;
+  height: 30px;
+  margin: 10px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  background-color: rgb(110, 117, 124);
+}
+
+.btndiv {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.tireTable {
+  width: max-content;
+  display: flex;
+  margin: auto;
+}
+
+.delBtn {
+  float: right;
+  font-weight: 700;
+  width: 100px;
+  height: 30px;
+  margin: 10px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  background-color: red;
+}
+
+.text {
+  text-align: center;
+  font-size: var(--application-font-size);
+}
+
+.textDiv {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.damageBtn {
+  font-weight: 700;
+  width: 150px;
+  height: 30px;
+  margin: 10px;
+  margin-left: 140px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  background-color: #007bff;
+}
+
+.box2 {
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 20px black;
+  border-radius: 8px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  padding: 10px;
+}
+
+.towBtn {
+  float: right;
+  font-weight: 700;
+  width: auto;
+  height: 30px;
+  margin: 10px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  background-color: green;
+}
+
+.noTowBtn {
+  float: left;
+  font-weight: 700;
+  width: auto;
+  height: 30px;
+  margin: 10px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  background-color: red;
+}
+
+.popup {
+  width: 240px;
+  height: 70px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 50px;
+  left: 50%;
+  margin-left: -120px;
+}

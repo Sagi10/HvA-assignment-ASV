@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-12">
+    <div class="alert alert-success fade" [ngClass]="{'show': showMessage, 'hide': !showMessage}">
+      successfully created a new wagon
+    </div>
+    <form (ngSubmit)="createNewWagon(form)" #form="ngForm" autocomplete="off">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label class="col-form-label">Title</label>
+          <input type="text" name="title" placeholder="title" class="form-control" ngModel required>
+        </div>
+        <div class="form-group col-md-6">
+          <label class="col-form-label">Type of Wagon</label>
+          <select name="type" class="form-control" ngModel required>
+            <option *ngFor="let role of equipmentFunctionList| keyvalue" [value]="role.value">
+              {{role.value}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <button class="btn btn-success" [disabled]="form.invalid">Create Wagon</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

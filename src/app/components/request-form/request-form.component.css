@@ -1,0 +1,172 @@
+form { max-width:420px; margin:20px auto 0; }
+h3 {text-align: center}
+
+::ng-deep .feedback-input {
+  font-weight:500;
+  font-size: 18px;
+  border-radius: 5px;
+  line-height: 22px;
+  border:2px solid #00AAE7;
+  transition: all 0.3s;
+  padding: 13px;
+  margin-bottom: 15px;
+  width:100%;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+::ng-deep .dropdown-input {
+  font-weight:500;
+  font-size: 18px;
+  border-radius: 5px 5px 0 0;
+  line-height: 22px;
+  border:2px solid #00AAE7;
+  transition: all 0.3s;
+  padding: 13px;
+  width:100%;
+  box-sizing: border-box;
+}
+
+::ng-deep input.ng-touched.ng-valid {
+  border:2px solid #00AAE7;
+}
+
+::ng-deep input.ng-touched.ng-invalid {
+  border: 2px red solid;
+}
+
+#submitButton {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  margin-top: 15px;
+  width: 100%;
+  background:#00AAE7;
+  border-radius:5px;
+  border:0;
+  cursor:pointer;
+  color:white;
+  font-size:24px;
+  padding-top:10px;
+  padding-bottom:10px;
+  transition: all 0.3s;
+  font-weight:700;
+}
+
+select option {
+  margin-top: -5px;
+}
+
+.popup {
+  width: max-content;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 15px;
+  padding: 15px;
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  margin-left: -120px;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.equipmentContrainer {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.btn {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.btn-outline-primary {
+  border:2px solid #00AAE7;
+  border-top: 0;
+}
+
+.btn-left {
+  border-bottom-left-radius: 5px;
+  border-right: 0;
+}
+
+.btn-right {
+  border-bottom-right-radius: 5px;
+  border-left: 0;
+}
+
+.flex-btn {
+  width: 100%;
+}
+
+.btn-selected {
+  background-color: #007bff;
+  color: white;
+}
+
+.removeButton {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  margin: 6px 0 23px 425px;
+  border-radius: 100%;
+  padding: 0;
+  background-color: #cd0003;
+  border: none;
+}
+
+nav .breadcrumb {
+  display: block;
+  width: 100%;
+}
+
+li.breadcrumb-item {
+  display: initial;
+}
+
+.auth-container {
+  float: right;
+}
+
+.btn-category {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.3em;
+  font-weight: bold;
+  width: 100%;
+  min-height: 50px;
+  background: #e9ecef;
+}
+
+.btn-category:hover {
+  color: #FFF;
+  background: #00AAE7;
+}
+#timepicker:before {
+  content:'Deadline:';
+  margin-right:.6em;
+}
+
+@media (min-width: 768px) {
+  .btn-category {
+    min-height: 260px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .btn-category {
+    min-height: 180px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .btn-category {
+    min-height: 220px;
+  }
+}
+

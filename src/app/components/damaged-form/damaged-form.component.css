@@ -1,0 +1,100 @@
+.popup {
+  width: 310px;
+  height: 40px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 50px;
+  left: 50%;
+  margin-left: -120px;
+}
+
+
+nav .breadcrumb {
+  display: block;
+  width: 100%;
+}
+
+li.breadcrumb-item {
+  display: initial;
+}
+
+.auth-container {
+  float: right;
+}
+
+.btn-category {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.3em;
+  font-weight: bold;
+  width: 100%;
+  min-height: 50px;
+  background: #e9ecef;
+}
+
+.btn-category:hover {
+  color: #FFF;
+  background: #00AAE7;
+}
+
+@media (min-width: 768px) {
+  .btn-category {
+    min-height: 260px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .btn-category {
+    min-height: 180px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .btn-category {
+    min-height: 220px;
+  }
+}
+
+
+::ng-deep .feedback-input {
+  font-weight:500;
+  font-size: 18px;
+  border-radius: 5px;
+  line-height: 22px;
+  border:2px solid #00AAE7;
+  transition: all 0.3s;
+  padding: 13px;
+  margin-bottom: 15px;
+  width:100%;
+  box-sizing: border-box;
+}
+
+::ng-deep .dropdown-input {
+  font-weight:500;
+  font-size: 18px;
+  border-radius: 5px 5px 0 0;
+  line-height: 22px;
+  border:2px solid #00AAE7;
+  transition: all 0.3s;
+  padding: 13px;
+  width:100%;
+  box-sizing: border-box;
+}
+
+.buttonShape {
+  font-weight: 700;
+  width: 150px;
+  height: 30px;
+  margin: 10px;
+  margin-left: 140px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  background-color: #007bff;
+}

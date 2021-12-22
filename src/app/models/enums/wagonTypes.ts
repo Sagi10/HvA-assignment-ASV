@@ -1,0 +1,33 @@
+export enum WagonTypes {
+  EQUIPMENT = 'Equipment',
+  TIRECART = 'Tires Cart',
+  NITROGENCART = 'Nitrogen Cart',
+  SKYDROLWAGEN = 'Skydrolwagen',
+  BRAKES_CART = 'Brakes Cart',
+  IDG_CART = 'IDG Cart',
+  SKYDROL_CART = 'Skydrol',
+  HYJET5 = 'Hyjet5',
+  HEATER_POLAR_CART = 'Heater, Polar Cart',
+  FUEL_CART = 'Fuel Cart',
+  WORKING_LIFT_PLATFORM = 'Working Lift Platform',
+  TECHNICAL_STAIRS = 'Technical stairs',
+  DRAIN_CART_FUEL = 'Drain Cart Fuel',
+  DRAIN_CART_SKYDROL = 'Drain Cart Skydrol',
+  WORK_LIFT = 'Work Lift',
+  SKYDROL_HYDRAULIC_FUEL_CART = 'Skydrol Hydrolic fuel',
+  HYJET5_HYDRAULIC_FLUID_CART = 'yjet5 hydraulic fuel cart',
+  PUMP_STAIRS = 'Pump Stairs',
+  PYLON_STAIRS = 'Pylon Stairs',
+  BRAKES_COOLER = 'Brakes Cooler',
+  COOLING_CART = 'Cooling Cart',
+  POLAR_HEATER = 'Polar Heater',
+  HEATER = 'Heater',
+  AIR_DATA_CART = 'Air Data Cart',
+  SPILL_CART = 'Spill Cart',
+  HOIST_CART = 'Hoist Cart',
+  GREASE_CART = 'Grease Cart',
+  CLEANING_CART = 'Cleaning Cart',
+  SPILL_KIT_CART = 'Spill Kit Cart'
+}
+
+

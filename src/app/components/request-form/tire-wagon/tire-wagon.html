@@ -1,0 +1,15 @@
+<div *ngIf="differentTireTypes; else enkelType">
+  <input name="tijd" type="number" class="feedback-input" placeholder="Number of nose tires"
+         [(ngModel)]="noseTires"
+         [required]="mainTires < 1 || mainTires === undefined"
+         pattern="[0-2]"/>
+  <input name="tijd" type="number" class="feedback-input" placeholder="Number of main tires"
+         [(ngModel)]="mainTires"
+         [required]="noseTires < 1 || noseTires === undefined"
+         pattern="[0-2]"/>
+</div>
+
+<ng-template #enkelType>
+  <input name="tijd" type="number" class="feedback-input" placeholder="Number of tires needed" [(ngModel)]="mainTires"
+         required/>
+</ng-template>

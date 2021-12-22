@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-12">
+    <div class="form-section">
+      <div class="form-group">
+        <input type="text" class="form-control" name="search" placeholder="filter to find a notification"
+               autocomplete="off"
+               [(ngModel)]="systemLogSearchInput">
+      </div>
+    </div>
+    <div class="form-group">
+      <table class="table table-responsive">
+        <thead>
+        <tr>
+          <th scope="col">Request-ID</th>
+          <th scope="col">Mechanic-ID</th>
+          <th scope="col">Created</th>
+          <th scope="col">Deadline</th>
+          <th scope="col">Delivered</th>
+          <th scope="col">Completed</th>
+          <th scope="col">Planetype </th>
+          <th scope="col">Wagontype</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let log of meldingService.getAlleMeldingen() | meldingFilter: systemLogSearchInput">
+          <td><b>{{log.id}}</b></td>
+          <td>{{"KLM" + log.mechanicId}}</td>
+          <td>{{log.requestCreated.toLocaleDateString() + " " + log.requestCreated.toTimeString().substr(0, 5)}}</td>
+          <td>{{log.deadline.toTimeString().substr(0, 5)}}</td>
+          <td>{{log.deliveryTime.toTimeString().substr(0, 5)}}</td>
+          <td>{{log.completionTime.toTimeString().substr(0, 5)}}</td>
+          <td>{{log.planeType}}</td>
+          <td>{{log.wagonType}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

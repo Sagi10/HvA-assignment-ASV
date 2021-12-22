@@ -1,0 +1,55 @@
+
+nav .breadcrumb {
+  display: block;
+  width: 100%;
+}
+
+li.breadcrumb-item {
+  display: initial;
+}
+
+li.breadcrumb-item a{
+  color: #007bff;
+  cursor: pointer;
+}
+
+.auth-container {
+  float: right;
+  cursor: pointer;
+}
+
+.nav-bar {
+  position: relative;
+  max-width: 1000px;
+  z-index: 1;
+  margin: auto;
+}
+
+.nav-bar ul{
+  list-style: none;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background-color: #00AAE7;
+  border-radius: 10px;
+}
+
+.nav-bar li{
+  float: left;
+}
+
+.nav-bar li a{
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 10px 30px;
+  text-decoration: none;
+}
+
+.nav-bar li a:hover{
+  background-color: grey;
+}
+
+.nav-bar .right{
+  float: right;
+}

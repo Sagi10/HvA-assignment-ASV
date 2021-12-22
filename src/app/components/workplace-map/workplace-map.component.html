@@ -1,0 +1,96 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="pagetitle">{{equipment.deadline.toLocaleTimeString().substr(0, 5)}} | {{equipment.location}}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-8 col-xl-9">
+      <div id="map-container"></div>
+    </div>
+    <div class="col-12 col-md-4 col-xl-3">
+      <h2>Equipment</h2>
+      <div id="jpt" class="mb-2">
+        <div class="wagons-container">
+          <div class="accordion" id="accordionExample">
+            <div class="card">
+              <div class="card-header">
+                  <span class="col-form-label" data-toggle="collapse" data-target="#collapseOne"
+                        aria-expanded="true" aria-controls="collapseOne">
+                    Equipment (Carts)
+                  </span>
+              </div>
+
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                   data-parent="#accordionExample">
+                <div class="card-body">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h2>Request details</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <p>
+            Welcome, {{this.authService.getUser().getRole()}} <br>
+            Here is some information about your accepted request.
+          </p>
+          <p>
+            <strong>Id:</strong> {{this.equipment.id}} <br>
+            <strong>Planetype:</strong> {{this.equipment.planeType}}<br>
+            <strong>Tailtype:</strong> {{this.equipment.tailType}}<br>
+            <strong>Position:</strong> {{this.equipment.position}}<br>
+          </p>
+        </div>
+      </div>
+      <button class="btn bezorgdbtn" data-target="#deliverpopup" data-toggle="modal" type="button">Deliver!</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deliverpopup"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Deliver confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <p class="text"><strong>Have you delivered the equipment?</strong></p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="bezorgd(meldingService.index)">Yes</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!--andere popup-->
+<!--<ng-container *ngIf="check == true">-->
+<!--  <div class="box">-->
+<!--&lt;!&ndash;    <div class="closeBtndiv">&ndash;&gt;-->
+<!--&lt;!&ndash;      <a class="closeBtn" (click)="closePopUp()">X</a>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--    <div class="contentContainer">-->
+<!--    <p class="text"><strong>Are you sure you delivered the equipment?</strong></p>-->
+<!--    <br>-->
+<!--    <button (click)="closePopUp()" class="cancelBtn">Cancel</button>-->
+<!--    <button (click)="bezorgd(meldingService.index)" class="deliveredBtn">Delivered</button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</ng-container>-->

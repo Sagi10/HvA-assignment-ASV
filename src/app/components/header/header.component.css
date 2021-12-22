@@ -1,0 +1,14 @@
+.header {
+  position: relative;
+  top: 20px;
+  width: 100%;
+}
+
+.header .klm-logo {
+  width: 450px;
+  height: 250px;
+  position: relative;
+  text-align: center;
+  display: block;
+  margin: auto;
+}

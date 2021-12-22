@@ -1,0 +1,75 @@
+
+<!--<button type="button" data-toggle="modal" data-target="#ModalSchadeformulier" class="btnShape buttonShape">-->
+<!--  Report damage-->
+<!--</button>-->
+
+<!-- Modal -->
+<div class="modal fade" id="ModalSchadeformulier"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Malfunction form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form (ngSubmit)="onSumbitDamageForm(damageForm)" damageForm="ngForm">
+
+          <div class="form-row">
+            <div class="col"><label>Location:</label>
+              <input type="text" class="form-control" id="melder"
+                     placeholder="{{meldingenService.getMechanicMeldingen()[meldingenService.index].location}}" readonly>
+            </div>
+            <div class="col"><label>Time:</label>
+              <input type="text" class="form-control" id="datum"
+                     placeholder="{{currentTime}}" readonly>
+            </div>
+          </div>
+          <br>
+          <div class="form-row">
+            <div class="col"><label>Type Equipment:</label>
+              <input type="text" class="form-control" id="typeEquipment"
+                     placeholder="{{meldingenService.getMechanicMeldingen()[meldingenService.index].wagonType}}" readonly>
+            </div>
+            <div class="col"><label>Equipment ID:</label>
+              <input type="text" class="form-control" id="equipmentId"
+                     placeholder="{{meldingenService.getMechanicMeldingen()[meldingenService.index].selectedWagon}}" readonly>
+            </div>
+          </div>
+          <br>
+
+          <div class="form-row">
+            <div class="col">
+              <input type="checkbox"> concerns registered equipment
+            </div>
+            <div class="col">
+              <input type="checkbox"> is of domestic nature
+            </div>
+          </div>
+          <br>
+
+          <div class="form-row">
+            <label for="omschrijving"></label>
+            <textarea type="text" class="form-control" cols="20" rows="10" id="omschrijving"
+                      placeholder="Give a description here" required></textarea>
+          </div>
+          <br>
+
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="bevestigd()">Send form</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div *ngIf="popupOpen" class="popup">
+  <span>The malfunction form has been send!</span>
+</div>

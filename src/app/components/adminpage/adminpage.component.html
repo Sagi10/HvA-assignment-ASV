@@ -1,0 +1,22 @@
+<div class="container">
+  <ng-template [ngIf]="!adminService.hideNavButtons">
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-4">
+        <a routerLink="/admin/users" class="btn btn-category">
+          Users
+        </a>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <a routerLink="/admin/equipments" class="btn btn-category">
+          Equipment
+        </a>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <a routerLink="/admin/logs" class="btn btn-category">
+          System Logs
+        </a>
+      </div>
+    </div>
+  </ng-template>
+  <router-outlet></router-outlet>
+</div>

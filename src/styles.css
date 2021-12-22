@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+  --color-blue: #00AAE7;
+  --application-font-size: 18px;
+}
+
+.popup {
+  font-size: var(--application-font-size);
+  width: max-content;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 25px;
+  padding: 20px;
+  position: absolute;
+  z-index: 1;
+  top: 100px;
+  left: 50%;
+}
