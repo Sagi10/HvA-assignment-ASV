@@ -1,5 +1,5 @@
 {
-  "name": "klm4",
+  "name": "hva-assignment-asv",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "^8.2.14",
     "@angular/router": "^8.2.14",
     "@asymmetrik/ngx-leaflet": "^6.0.1",
+    "express": "^4.17.2",
     "jquery": "^3.4.1",
     "leaflet": "^1.6.0",
     "leaflet-draw": "^1.0.4",
