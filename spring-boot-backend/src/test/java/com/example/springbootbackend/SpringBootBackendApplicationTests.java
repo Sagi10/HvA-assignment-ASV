@@ -63,7 +63,6 @@ class SpringBootBackendApplicationTests {
    * User Story 1: Check if the request that is sent by the mechanic is successfully added to the user.
    */
   @Test
-  @Order(1)
   public void addSingleNewRequestToUser() {
     // Conformance, The size of the list is incremented with 1 when a new request is made.
     // Ordering, the values dont have to be in order when a new request is made by the mechanic
@@ -85,7 +84,6 @@ class SpringBootBackendApplicationTests {
    * throws exception that the request doesn't exist after deleting the request
    */
   @Test
-  @Order(2)
   void deleteRequestById() {
     // Conformance,  The size of the list is incremented with 1 when a new request is made.
     // Ordering, in this case the set of values does not have to be order.
@@ -115,7 +113,6 @@ class SpringBootBackendApplicationTests {
    * mechanic are the same requests that are shown in the overview lists.
    */
   @Test
-  @Order(3)
   void getRequestsOverviewMechanic() {
     // Conformance, The size of the list is incremented with 1 when a new request is made.
     // Ordering, the values are returned in order. Shortest deadlines first.
