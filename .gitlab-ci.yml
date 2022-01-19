@@ -9,6 +9,7 @@ build-job-fe:       # This job runs in the build stage, which runs first.
   tags:
     - hva
   script:
+    - cd angular-frontend
     - npm install
     - ng build
 
