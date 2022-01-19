@@ -45,7 +45,7 @@ deploy-job-fe: # This job runs in the deployment stage.
     - git remote rm angular-frontend || true
     - git remote add angular-frontend https://heroku:$HEROKU_API_KEY@git.heroku.com/hva-asv-assignment-fe-staging.git || true
     - git subtree split --prefix angular-frontend -b splitting-fe
-    - git push --force heroku-fe-app splitting-fe:main
+    - git push --force angular-frontend splitting-fe:main
     - git branch -D splitting-fe
 
 
@@ -63,5 +63,5 @@ deploy-job-be: # This job runs in the deployment stage.
     - git remote rm spring-boot-backend || true
     - git remote add spring-boot-backend https://heroku:$HEROKU_API_KEY@git.heroku.com/hva-asv-assignment-be-staging.git || true
     - git subtree split --prefix spring-boot-backend -b splitting-be
-    - git push --force heroku-be-app splitting-be:main
+    - git push --force spring-boot-backend splitting-be:main
     - git branch -D splitting-be
