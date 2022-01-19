@@ -7,6 +7,7 @@ import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../authentication/authentication.service';
 import {RequestStatus} from '../../models/enums/requestStatus';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class RequestService implements OnInit {
   public alleMeldingen: Request[] = [];                      //
   public meldingen: Request[] = [];
   public mechanicMeldingen: Request[] = [];                  // Array van meldingen voor de actieve mechanic
-  private readonly URL: string = 'http://localhost:8080';
+  private readonly URL: string = environment.apiUrl;
   public time = new Date().toLocaleTimeString();
   public index: number = 0;
   public pendingTextCheck = true;

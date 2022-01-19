@@ -4,13 +4,14 @@ import {Cart} from '../../models/carts/Cart.model';
 import {Observable} from 'rxjs';
 import {icon, marker} from 'leaflet';
 import {RequestService} from '../request/request.service';
+import {environment} from '../../../environments/environment';
 
 declare let L; // used for Leaflet.js
 @Injectable({
   providedIn: 'root'
 })
 export class WagonsService {
-  private readonly URL = 'http://localhost:8080/carts'; // springboot url for the carts
+  private readonly URL = environment.apiUrl + 'carts'; // springboot url for the carts
   public pickedWagon = false;
 
   /**
