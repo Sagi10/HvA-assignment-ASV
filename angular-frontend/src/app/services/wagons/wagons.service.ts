@@ -11,7 +11,7 @@ declare let L; // used for Leaflet.js
   providedIn: 'root'
 })
 export class WagonsService {
-  private readonly URL = environment.apiUrl + 'carts'; // springboot url for the carts
+  private readonly URL = environment.apiUrl + '/carts'; // springboot url for the carts
   public pickedWagon = false;
 
   /**
