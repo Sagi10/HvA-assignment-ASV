@@ -1,9 +1,9 @@
-stages:          # List of stages for jobs, and their order of execution
+stages: # List of stages for jobs, and their order of execution
   - build
   - test
   - deploy
 
-build-job-fe:       # This job runs in the build stage, which runs first.
+build-job-fe: # This job runs in the build stage, which runs first.
   stage: build
   image: trion/ng-cli:10.2.0
   tags:
@@ -13,7 +13,7 @@ build-job-fe:       # This job runs in the build stage, which runs first.
     - npm install
     - ng build
 
-build-job-be:       # This job runs in the build stage, which runs first.
+build-job-be: # This job runs in the build stage, which runs first.
   stage: build
   image: maven:3.8-adoptopenjdk-15
   tags:
@@ -22,7 +22,7 @@ build-job-be:       # This job runs in the build stage, which runs first.
     - cd spring-boot-backend
     - mvn compile
 
-unit-test-job-be:   # This job runs in the test stage.
+unit-test-job-be: # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
   image: maven:3.8-adoptopenjdk-15
   tags:
@@ -31,9 +31,37 @@ unit-test-job-be:   # This job runs in the test stage.
     - cd spring-boot-backend
     - mvn test
 
-deploy-job:      # This job runs in the deploy stage.
+deploy-job-fe: # This job runs in the deployment stage.
   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
+  image: node:latest
   tags:
     - hva
-  script:
-    - echo "Eerst uitzoeken hoe we willen deployen en dan hier de script toevoegen"
+  only:
+    - refs: # this is a filter that states that is only be triggers when changes are in de main branch
+        - main
+    - changes: # this is a filter that states that it is only triggered when changes are made in this folder
+        - "angular-frontend/**/*"
+  script: # splitting the fe en be folder is needed because the both are in one repository.
+    - git remote rm angular-frontend || true
+    - git remote add angular-frontend https://heroku:$HEROKU_API_KEY@git.heroku.com/angular-frontend.git || true
+    - git subtree split --prefix angular-frontend -b splitting-fe
+    - git push --force heroku-fe-app splitting-fe:main
+    - git branch -D splitting-fe
+
+
+deploy-job-be: # This job runs in the deployment stage.
+  stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
+  image: maven:3.8-adoptopenjdk-15
+  tags:
+    - hva
+  only:
+    - refs: # this is a filter that states that is only be triggers when changes are in de main branch
+        - main
+    - changes: # this is a filter that states that it is only triggered when changes are made in this folder
+        - "spring-boot-backend/**/*"
+  script: # splitting the fe en be folder is needed because the both are in one repository.
+    - git remote rm spring-boot-backend || true
+    - git remote add spring-boot-backend https://heroku:$HEROKU_API_KEY@git.heroku.com/spring-boot-backend.git || true
+    - git subtree split --prefix spring-boot-backend -b splitting-be
+    - git push --force heroku-be-app splitting-be:main
+    - git branch -D splitting-be
