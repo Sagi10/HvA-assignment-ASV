@@ -37,10 +37,10 @@ deploy-job-fe: # This job runs in the deployment stage.
   tags:
     - hva
   only:
-    - refs: # this is a filter that states that is only be triggers when changes are in de main branch
-        - main
-    - changes: # this is a filter that states that it is only triggered when changes are made in this folder
-        - "angular-frontend/**/*"
+    refs: # this is a filter that states that is only be triggers when changes are in de main branch
+      - main
+    changes: # this is a filter that states that it is only triggered when changes are made in this folder
+      - "angular-frontend/**/*"
   script: # splitting the fe en be folder is needed because the both are in one repository.
     - git remote rm angular-frontend || true
     - git remote add angular-frontend https://heroku:$HEROKU_API_KEY@git.heroku.com/angular-frontend.git || true
@@ -55,10 +55,10 @@ deploy-job-be: # This job runs in the deployment stage.
   tags:
     - hva
   only:
-    - refs: # this is a filter that states that is only be triggers when changes are in de main branch
-        - main
-    - changes: # this is a filter that states that it is only triggered when changes are made in this folder
-        - "spring-boot-backend/**/*"
+    refs: # this is a filter that states that is only be triggers when changes are in de main branch
+      - main
+    changes: # this is a filter that states that it is only triggered when changes are made in this folder
+      - "spring-boot-backend/**/*"
   script: # splitting the fe en be folder is needed because the both are in one repository.
     - git remote rm spring-boot-backend || true
     - git remote add spring-boot-backend https://heroku:$HEROKU_API_KEY@git.heroku.com/spring-boot-backend.git || true
