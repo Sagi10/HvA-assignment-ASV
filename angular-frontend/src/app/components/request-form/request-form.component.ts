@@ -3,23 +3,22 @@ import {NgForm} from '@angular/forms';
 import {PlaneTypes} from '../../models/enums/planeTypes';
 import {WagonTypes} from '../../models/enums/wagonTypes';
 import {TireWagon} from './tire-wagon/tire-wagon';
-import {Time} from '@angular/common';
 import {RequestService} from '../../services/request/request.service';
-import {Request} from '../../models/request/request';
+import {Request, RequestBuilder} from '../../models/request/request';
 import {MechanicService} from '../mechanicpage/mechanic.service';
 import {AuthenticationService} from '../../services/authentication/authentication.service';
 import {Router} from '@angular/router';
 import {RequestStatus} from '../../models/enums/requestStatus';
-import {TailType} from "../../models/enums/tailTypeEnums/TailTypes";
-import {Boeing737700_TailTypes} from "../../models/enums/tailTypeEnums/Boeing_737_700-TailTypes";
-import {Boeing737800_TailTypes} from "../../models/enums/tailTypeEnums/Boeing_737_800-TailTypes";
-import {Boeing737900_TailTypes} from "../../models/enums/tailTypeEnums/Boeing_737_900-TailTypes";
-import {AirbusA330200_TailTypes} from "../../models/enums/tailTypeEnums/Airbus_A330_200-TailTypes";
-import {Boeing747400_TailTypes} from "../../models/enums/tailTypeEnums/Boeing_747_400-TailTypes";
-import {Boeing747400F_TailTypes} from "../../models/enums/tailTypeEnums/Boeing_747_400F-TailTypes";
-import {Boeing777200_TailTypes} from "../../models/enums/tailTypeEnums/Boeing_777_200-TailTypes";
-import {Boeing777300_TailTypes} from "../../models/enums/tailTypeEnums/Boeing_777_300-TailTypes";
-import {Boeing7879_TailTypes} from "../../models/enums/tailTypeEnums/Boeing_787_9-TailTypes";
+import {TailType} from '../../models/enums/tailTypeEnums/TailTypes';
+import {Boeing737700_TailTypes} from '../../models/enums/tailTypeEnums/Boeing_737_700-TailTypes';
+import {Boeing737800_TailTypes} from '../../models/enums/tailTypeEnums/Boeing_737_800-TailTypes';
+import {Boeing737900_TailTypes} from '../../models/enums/tailTypeEnums/Boeing_737_900-TailTypes';
+import {AirbusA330200_TailTypes} from '../../models/enums/tailTypeEnums/Airbus_A330_200-TailTypes';
+import {Boeing747400_TailTypes} from '../../models/enums/tailTypeEnums/Boeing_747_400-TailTypes';
+import {Boeing747400F_TailTypes} from '../../models/enums/tailTypeEnums/Boeing_747_400F-TailTypes';
+import {Boeing777200_TailTypes} from '../../models/enums/tailTypeEnums/Boeing_777_200-TailTypes';
+import {Boeing777300_TailTypes} from '../../models/enums/tailTypeEnums/Boeing_777_300-TailTypes';
+import {Boeing7879_TailTypes} from '../../models/enums/tailTypeEnums/Boeing_787_9-TailTypes';
 
 @Component({
   selector: 'request-form',
@@ -245,12 +244,21 @@ export class RequestFormComponent implements OnInit {
         extraInfo = 'N:' + this.tireWagonComponent.getNoseTires() + ' ,m:' + this.tireWagonComponent.getMainTires();
       }
 
-      let request = new Request(this.authentication.getID(), this.location,
-        new Date(new Date().setHours(
-          parseInt(this.deadline.toString().substr(0, 3)),
-          parseInt(this.deadline.toString().substr(3)), 0, 0)),
-        this.planeType, this.tailType, this.selectedEquipment[i], null, this.locationArray[i],
-        RequestStatus.Pending, extraInfo, this.authentication.getID(), null, null, new Date());
+      const deadline = new Date(new Date().setHours(
+              parseInt(this.deadline.toString().substr(0, 3), 10),
+              parseInt(this.deadline.toString().substr(3), 10), 0, 0));
+      const request = new RequestBuilder()
+          .setLocation(this.location)
+          .setDeadline(deadline)
+          .setPlaneType(this.planeType)
+          .setTailType(this.tailType)
+          .setWagonType(this.selectedEquipment[i])
+          .setPosition(this.locationArray[i])
+          .setStatus(RequestStatus.Pending)
+          .setExtraInfo(extraInfo)
+          .setMechanic(this.authentication.getID())
+          .build();
+
       this.meldingService.getMeldingen().push(request);
       this.meldingService.getMechanicMeldingen().push(request);
       newRequests.push(request);

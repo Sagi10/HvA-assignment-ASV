@@ -1,5 +1,5 @@
 import {Injectable, OnInit} from '@angular/core';
-import {Request} from '../../models/request/request';
+import {Request, RequestBuilder} from '../../models/request/request';
 import {PlaneTypes} from '../../models/enums/planeTypes';
 import {WagonTypes} from '../../models/enums/wagonTypes';
 import {Observable} from 'rxjs';
@@ -58,15 +58,25 @@ export class RequestService implements OnInit {
 
     this.getAllMeldingenFromSpring().subscribe((requests) => {
       for (let i = 0; i < requests.length; i++) {
+        const oldRequest: Request = requests[i];
         this.alleMeldingen.push(
-          new Request(requests[i].id, requests[i].location,
-            new Date(Date.parse(<string> <unknown> requests[i].deadline)),
-            requests[i].planeType, requests[i].tailType, requests[i].wagonType, requests[i].selectedWagon,
-            requests[i].position, requests[i].status, requests[i].extraInfo, requests[i].mechanicId,
-            new Date(Date.parse(<string> <unknown> requests[i].deliveryTime)),
-            new Date(Date.parse(<string> <unknown> requests[i].completionTime)),
-            new Date(Date.parse(<string> <unknown> requests[i].requestCreated))
-          ));
+            new RequestBuilder()
+              .setId(oldRequest.id)
+              .setLocation(oldRequest.location)
+              .setDeadline(new Date(Date.parse(<string> <unknown> oldRequest.deadline)))
+              .setPlaneType(oldRequest.planeType)
+              .setTailType(oldRequest.tailType)
+              .setWagonType(oldRequest.wagonType)
+              .setSelectedWagon(oldRequest.selectedWagon)
+              .setPosition(oldRequest.position)
+              .setStatus(oldRequest.status)
+              .setExtraInfo(oldRequest.extraInfo)
+              .setMechanic(oldRequest.mechanicId)
+              .setDeliveryTime(new Date(Date.parse(<string> <unknown> oldRequest.deliveryTime)))
+              .setCompletionTime(new Date(Date.parse(<string> <unknown> oldRequest.completionTime)))
+              .setRequestCreated(new Date(Date.parse(<string> <unknown> oldRequest.requestCreated)))
+              .build()
+        );
       }
 
       //loops through every request that has been made
@@ -306,15 +316,23 @@ export class RequestService implements OnInit {
       }
 
       for (let i = 0; i < updatedRequests.length; i++) {
-        updatedRequests[i] =
-          new Request(requests[i].id, requests[i].location,
-            new Date(Date.parse(<string> <unknown> requests[i].deadline)),
-            requests[i].planeType, requests[i].tailType, requests[i].wagonType, requests[i].selectedWagon,
-            requests[i].position, requests[i].status, requests[i].extraInfo, requests[i].mechanicId,
-            new Date(Date.parse(<string> <unknown> requests[i].deliveryTime)),
-            new Date(Date.parse(<string> <unknown> requests[i].completionTime)),
-            new Date(Date.parse(<string> <unknown> requests[i].requestCreated))
-          );
+        const oldRequest: Request = requests[i];
+        updatedRequests[i] = new RequestBuilder()
+            .setId(oldRequest.id)
+            .setLocation(oldRequest.location)
+            .setDeadline(new Date(Date.parse(<string> <unknown> oldRequest.deadline)))
+            .setPlaneType(oldRequest.planeType)
+            .setTailType(oldRequest.tailType)
+            .setWagonType(oldRequest.wagonType)
+            .setSelectedWagon(oldRequest.selectedWagon)
+            .setPosition(oldRequest.position)
+            .setStatus(oldRequest.status)
+            .setExtraInfo(oldRequest.extraInfo)
+            .setMechanic(oldRequest.mechanicId)
+            .setDeliveryTime(new Date(Date.parse(<string> <unknown> oldRequest.deliveryTime)))
+            .setCompletionTime(new Date(Date.parse(<string> <unknown> oldRequest.completionTime)))
+            .setRequestCreated(new Date(Date.parse(<string> <unknown> oldRequest.requestCreated)))
+            .build();
       }
 
       //Updates the requests if they've already been loaded
