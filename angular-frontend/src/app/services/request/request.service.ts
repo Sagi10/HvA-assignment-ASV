@@ -163,36 +163,16 @@ export class RequestService implements OnInit {
 
   // Sorts both the general requests and the mechanic requests from earliest to latest by deadline
   public sortAllRequests() {
-    this.meldingen = this.meldingen.sort((a, b) => {
-      if (a.deadline < b.deadline) {
-        return -1;
-      } else if (a.deadline > b.deadline) {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
-
-    this.mechanicMeldingen = this.mechanicMeldingen.sort((a, b) => {
-      if (a.deadline < b.deadline) {
-        return -1;
-      } else if (a.deadline > b.deadline) {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
+    this.meldingen = this.sortRequestsByDate(this.meldingen);
+    this.mechanicMeldingen = this.sortRequestsByDate(this.mechanicMeldingen);
   }
 
-
-  public sortRequestsByDate(requests: Request[]) {
-    requests = requests.sort((a, b) => {
-      if (a.deadline < b.deadline) {
-        return -1;
-      } else if (a.deadline > b.deadline) {
-        return 1;
-      } else {
+  public sortRequestsByDate(requests: Request[]): Request[] {
+    return requests.sort((a: Request, b: Request) => {
+      if (a.deadline === null || b.deadline === null) {
         return 0;
+      } else {
+        return a.deadline < b.deadline ? -1 : 1;
       }
     });
   }
