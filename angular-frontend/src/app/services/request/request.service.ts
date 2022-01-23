@@ -58,23 +58,22 @@ export class RequestService implements OnInit {
 
     this.getAllMeldingenFromSpring().subscribe((requests) => {
       for (let i = 0; i < requests.length; i++) {
-        const oldRequest: Request = requests[i];
         this.alleMeldingen.push(
             new RequestBuilder()
-              .setId(oldRequest.id)
-              .setLocation(oldRequest.location)
-              .setDeadline(new Date(Date.parse(<string> <unknown> oldRequest.deadline)))
-              .setPlaneType(oldRequest.planeType)
-              .setTailType(oldRequest.tailType)
-              .setWagonType(oldRequest.wagonType)
-              .setSelectedWagon(oldRequest.selectedWagon)
-              .setPosition(oldRequest.position)
-              .setStatus(oldRequest.status)
-              .setExtraInfo(oldRequest.extraInfo)
-              .setMechanic(oldRequest.mechanicId)
-              .setDeliveryTime(new Date(Date.parse(<string> <unknown> oldRequest.deliveryTime)))
-              .setCompletionTime(new Date(Date.parse(<string> <unknown> oldRequest.completionTime)))
-              .setRequestCreated(new Date(Date.parse(<string> <unknown> oldRequest.requestCreated)))
+              .setId(requests[i].id)
+              .setLocation(requests[i].location)
+              .setDeadline(new Date(Date.parse(<string> <unknown> requests[i].deadline)))
+              .setPlaneType(requests[i].planeType)
+              .setTailType(requests[i].tailType)
+              .setWagonType(requests[i].wagonType)
+              .setSelectedWagon(requests[i].selectedWagon)
+              .setPosition(requests[i].position)
+              .setStatus(requests[i].status)
+              .setExtraInfo(requests[i].extraInfo)
+              .setMechanic(requests[i].mechanicId)
+              .setDeliveryTime(new Date(Date.parse(<string> <unknown> requests[i].deliveryTime)))
+              .setCompletionTime(new Date(Date.parse(<string> <unknown> requests[i].completionTime)))
+              .setRequestCreated(new Date(Date.parse(<string> <unknown> requests[i].requestCreated)))
               .build()
         );
       }

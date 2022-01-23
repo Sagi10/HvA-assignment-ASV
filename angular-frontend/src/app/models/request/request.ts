@@ -83,9 +83,7 @@ export class RequestBuilder {
     return this;
   }
 
-  public build() {
-    return this.request;
-  }
+  public build = () => this.request;
 }
 
 export class Request {
