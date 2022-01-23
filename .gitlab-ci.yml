@@ -31,37 +31,37 @@ unit-test-job-be: # This job runs in the test stage.
     - cd spring-boot-backend
     - mvn test
 
-deploy-job-fe: # This job runs in the deployment stage.
-  stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
-  image: node:latest
-  tags:
-    - hva
-  only:
-    refs: # this is a filter that states that is only be triggers when changes are in de main branch
-      - main
-    changes: # this is a filter that states that it is only triggered when changes are made in this folder
-      - "angular-frontend/**/*"
-  script: # splitting the fe en be folder is needed because the both are in one repository.
-    - git remote rm angular-frontend || true
-    - git remote add angular-frontend https://heroku:$HEROKU_API_KEY@git.heroku.com/hva-asv-assignment-fe-staging.git || true
-    - git subtree split --prefix angular-frontend -b splitting-fe
-    - git push --force angular-frontend splitting-fe:main
-    - git branch -D splitting-fe
+# deploy-job-fe: # This job runs in the deployment stage.
+#   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
+#   image: node:latest
+#   tags:
+#     - hva
+#   only:
+#     refs: # this is a filter that states that is only be triggers when changes are in de main branch
+#       - main
+#     changes: # this is a filter that states that it is only triggered when changes are made in this folder
+#       - "angular-frontend/**/*"
+#   script: # splitting the fe en be folder is needed because the both are in one repository.
+#     - git remote rm angular-frontend || true
+#     - git remote add angular-frontend https://heroku:$HEROKU_API_KEY@git.heroku.com/hva-asv-assignment-fe-staging.git || true
+#     - git subtree split --prefix angular-frontend -b splitting-fe
+#     - git push --force angular-frontend splitting-fe:main
+#     - git branch -D splitting-fe
 
 
-deploy-job-be: # This job runs in the deployment stage.
-  stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
-  image: maven:3.8-adoptopenjdk-15
-  tags:
-    - hva
-  only:
-    refs: # this is a filter that states that is only be triggers when changes are in de main branch
-      - main
-    changes: # this is a filter that states that it is only triggered when changes are made in this folder
-      - "spring-boot-backend/**/*"
-  script: # splitting the fe en be folder is needed because the both are in one repository.
-    - git remote rm spring-boot-backend || true
-    - git remote add spring-boot-backend https://heroku:$HEROKU_API_KEY@git.heroku.com/hva-asv-assignment-be-staging.git || true
-    - git subtree split --prefix spring-boot-backend -b splitting-be
-    - git push --force spring-boot-backend splitting-be:main
-    - git branch -D splitting-be
+# deploy-job-be: # This job runs in the deployment stage.
+#   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
+#   image: maven:3.8-adoptopenjdk-15
+#   tags:
+#     - hva
+#   only:
+#     refs: # this is a filter that states that is only be triggers when changes are in de main branch
+#       - main
+#     changes: # this is a filter that states that it is only triggered when changes are made in this folder
+#       - "spring-boot-backend/**/*"
+#   script: # splitting the fe en be folder is needed because the both are in one repository.
+#     - git remote rm spring-boot-backend || true
+#     - git remote add spring-boot-backend https://heroku:$HEROKU_API_KEY@git.heroku.com/hva-asv-assignment-be-staging.git || true
+#     - git subtree split --prefix spring-boot-backend -b splitting-be
+#     - git push --force spring-boot-backend splitting-be:main
+#     - git branch -D splitting-be
