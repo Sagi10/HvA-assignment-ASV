@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {AdminService} from './admin.service';
 
 @Component({
@@ -6,11 +6,8 @@ import {AdminService} from './admin.service';
   templateUrl: './adminpage.component.html',
   styleUrls: ['./adminpage.component.css']
 })
-export class AdminpageComponent implements OnInit {
+export class AdminpageComponent {
 
-  constructor(private adminService: AdminService) {
-  }
-
-  ngOnInit() {
+  constructor(public adminService: AdminService) {
   }
 }
