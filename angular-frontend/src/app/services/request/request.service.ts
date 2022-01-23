@@ -441,10 +441,10 @@ export class RequestService implements OnInit {
   }
 
   finishedstatusRequest(id: number) {
-    for (let i = 0; i < this.meldingen.length; i++) {
-      if (this.meldingen[i].id == id) {
-        this.meldingen[i].status = RequestStatus.Finished;
-        return this.meldingen[i].status;
+    for (const melding of this.meldingen) {
+      if (melding.id === id) {
+        melding.status = RequestStatus.Finished;
+        return melding.status;
       }
     }
   }
