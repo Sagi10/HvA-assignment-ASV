@@ -278,90 +278,81 @@ export class RequestService implements OnInit {
   }
 
   public getUpdatedOrNewRequests(): void {
-    //checks if the user is still signed in, doensn't do shit when not logged in |:^)
-    if (this.authentication.getUser() === null) {
-      return;
-    }
-
-    let id = 0;
+    if (this.authentication.getUser() === null) { return; }
     if (this.authentication.getUser().getRole() === 'MECHANIC') {
-      id = this.authentication.getID();
+      this.getChangedRequest(this.authentication.getID());
     }
-    this.httpClient.get(this.URL + '/open-requests/changed-requests/' + id).subscribe((requests) => {
-      let updatedRequests: Request[] = <Request[]> requests;
+  }
 
-      if (updatedRequests[0] == undefined) {
-        return;
-      }
+  public getChangedRequest(id: number) {
+      this.httpClient.get(this.URL + '/open-requests/changed-requests/' + id).subscribe((requests) => {
+          const updatedRequests: Request[] = requests as Request[];
+          if (updatedRequests[0] === undefined) { return; }
 
-      for (let i = 0; i < updatedRequests.length; i++) {
-        const oldRequest: Request = requests[i];
-        updatedRequests[i] = new RequestBuilder()
-            .setId(oldRequest.id)
-            .setLocation(oldRequest.location)
-            .setDeadline(new Date(Date.parse(<string> <unknown> oldRequest.deadline)))
-            .setPlaneType(oldRequest.planeType)
-            .setTailType(oldRequest.tailType)
-            .setWagonType(oldRequest.wagonType)
-            .setSelectedWagon(oldRequest.selectedWagon)
-            .setPosition(oldRequest.position)
-            .setStatus(oldRequest.status)
-            .setExtraInfo(oldRequest.extraInfo)
-            .setMechanic(oldRequest.mechanicId)
-            .setDeliveryTime(new Date(Date.parse(<string> <unknown> oldRequest.deliveryTime)))
-            .setCompletionTime(new Date(Date.parse(<string> <unknown> oldRequest.completionTime)))
-            .setRequestCreated(new Date(Date.parse(<string> <unknown> oldRequest.requestCreated)))
-            .build();
-      }
-
-      //Updates the requests if they've already been loaded
-      for (let i = 0; i < this.meldingen.length; i++) {
-        second: for (let j = 0; j < updatedRequests.length; j++) {
-          if (this.meldingen[i].id == updatedRequests[j].id) {
-            this.meldingen[i] = updatedRequests[j];
-            if (updatedRequests[j].mechanicId === this.authentication.getID()) {
-              for (let k = 0; k < this.mechanicMeldingen.length; k++) {
-                //Skips current mechanic request if it has just been created and id hasn't been received by id yet
-                if (this.mechanicMeldingen[k].id === undefined)
-                  continue;
-
-                if (this.mechanicMeldingen[k].id === updatedRequests[j].id) {
-                  this.mechanicMeldingen[k] = updatedRequests[j];
-
-                  if (this.mechanicMeldingen[k].status === RequestStatus.Delivered) {
-                    this.shopPopup('Equipment has been delivered at ' + this.mechanicMeldingen[k].location);
-                  }
-                  updatedRequests.splice(j, 1);
-                  j--;
-                  continue second;
-                }
-
-              }
-            }
-
-            if (updatedRequests[j].status === RequestStatus.Collect) {
-              this.shopPopup('Equipment needs to be collected at ' + this.meldingen[i].location);
-            }
-            updatedRequests.splice(j, 1);
+          for (let i = 0; i < updatedRequests.length; i++) {
+              const oldRequest: Request = requests[i];
+              updatedRequests[i] = new RequestBuilder()
+                  .setId(oldRequest.id)
+                  .setLocation(oldRequest.location)
+                  .setDeadline(new Date(Date.parse(oldRequest.deadline as unknown as string)))
+                  .setPlaneType(oldRequest.planeType)
+                  .setTailType(oldRequest.tailType)
+                  .setWagonType(oldRequest.wagonType)
+                  .setSelectedWagon(oldRequest.selectedWagon)
+                  .setPosition(oldRequest.position)
+                  .setStatus(oldRequest.status)
+                  .setExtraInfo(oldRequest.extraInfo)
+                  .setMechanic(oldRequest.mechanicId)
+                  .setDeliveryTime(new Date(Date.parse(oldRequest.deliveryTime as unknown as string)))
+                  .setCompletionTime(new Date(Date.parse(oldRequest.completionTime as unknown as string)))
+                  .setRequestCreated(new Date(Date.parse(oldRequest.requestCreated as unknown as string)))
+                  .build();
           }
-        }
+          this.loadUpdatedRequests(updatedRequests);
+          this.checkCollectStatus();
+          this.checkDeliveredStatus();
+          this.checkPendingStatus();
+          this.sortAllRequests();
+      });
+  }
+
+  public loadUpdatedRequests(updatedRequests: Request[]) {
+      // Updates the requests if they've already been loaded
+      this.meldingen.forEach( ((request: Request) => {
+          updatedRequests.forEach(((updatedRequest: Request, index: number) => {
+              if (request.id === updatedRequest.id) {
+                  request = updatedRequest;
+                  if (updatedRequest.mechanicId === this.authentication.getID()) {
+                      for (let k = 0; k < this.mechanicMeldingen.length; k++) {
+                          // Skips current mechanic request if it has just been created and id hasn't been received by id yet
+                          if (this.mechanicMeldingen[k].id !== undefined) {
+                              if (this.mechanicMeldingen[k].id === updatedRequest.id) {
+                                  this.mechanicMeldingen[k] = updatedRequest;
+
+                                  if (this.mechanicMeldingen[k].status === RequestStatus.Delivered) {
+                                      this.shopPopup('Equipment has been delivered at ' + this.mechanicMeldingen[k].location);
+                                  }
+                                  updatedRequests.splice(index, 1);
+                                  index--;
+                              }
+                          }
+                      }
+                  }
+                  if (updatedRequest.status === RequestStatus.Collect) {
+                      this.shopPopup('Equipment needs to be collected at ' + request.location);
+                  }
+                  updatedRequests.splice(index, 1);
+              }
+          }));
+      }));
+      // adds the new requests to the request lists
+      for (const item of updatedRequests) {
+          this.meldingen.push(item);
+          this.mechanicMeldingen.push(item);
+          if (this.authentication.getUser().getRole() === 'RUNNER') {
+              this.shopPopup('A new Request has been made');
+          }
       }
-
-      //adds the new requests to the request lists
-      for (let i = 0; i < updatedRequests.length; i++) {
-        this.meldingen.push(updatedRequests[i]);
-        this.mechanicMeldingen.push(updatedRequests[i]);
-
-        if (this.authentication.getUser().getRole() == 'RUNNER') {
-          this.shopPopup('A new Request has been made');
-        }
-
-      }
-      this.checkCollectStatus();
-      this.checkDeliveredStatus();
-      this.checkPendingStatus();
-      this.sortAllRequests();
-    });
   }
 
   public updateRequest(melding: Request): void {
