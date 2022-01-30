@@ -319,24 +319,24 @@ export class RequestService implements OnInit {
   public loadUpdatedRequests(updatedRequests: Request[]) {
       // Updates the requests if they've already been loaded
       this.meldingen.forEach( ((request: Request) => {
-          updatedRequests.forEach(((updatedRequest: Request, index: number) => {
+          updatedRequests.forEach( ((updatedRequest: Request, index: number) => {
               if (request.id === updatedRequest.id) {
                   request = updatedRequest;
                   if (updatedRequest.mechanicId === this.authentication.getID()) {
-                      for (let k = 0; k < this.mechanicMeldingen.length; k++) {
+                      this.mechanicMeldingen.forEach( ((mechanicRequest: Request) => {
                           // Skips current mechanic request if it has just been created and id hasn't been received by id yet
-                          if (this.mechanicMeldingen[k].id !== undefined) {
-                              if (this.mechanicMeldingen[k].id === updatedRequest.id) {
-                                  this.mechanicMeldingen[k] = updatedRequest;
+                          if (mechanicRequest.id !== undefined) {
+                              if (mechanicRequest.id === updatedRequest.id) {
+                                  mechanicRequest = updatedRequest;
 
-                                  if (this.mechanicMeldingen[k].status === RequestStatus.Delivered) {
-                                      this.shopPopup('Equipment has been delivered at ' + this.mechanicMeldingen[k].location);
+                                  if (mechanicRequest.status === RequestStatus.Delivered) {
+                                      this.shopPopup('Equipment has been delivered at ' + mechanicRequest.location);
                                   }
                                   updatedRequests.splice(index, 1);
                                   index--;
                               }
                           }
-                      }
+                      }));
                   }
                   if (updatedRequest.status === RequestStatus.Collect) {
                       this.shopPopup('Equipment needs to be collected at ' + request.location);
